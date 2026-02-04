@@ -1,6 +1,7 @@
 package com.smas_lab.gestionreservation.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,5 +17,9 @@ public class SalleService {
 	
 	public List<Salle> getAllSalles(){
 		return salleRepo.findAll();
+	}
+	
+	public Optional<Salle> getSalleById(Long id) {
+		return salleRepo.findById(id);
 	}
 }

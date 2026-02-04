@@ -70,6 +70,11 @@
 	              >Salles</a
 	            >
 	          </li>
+			  <li>
+  	            <a href="/reservations" class="nav-link px-2 link-body-emphasis"
+  	              >Réservations</a
+  	            >
+  	          </li>
 	        </ul>
 	        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
 	          <input
