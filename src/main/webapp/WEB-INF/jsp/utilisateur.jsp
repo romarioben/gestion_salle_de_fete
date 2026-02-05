@@ -111,57 +111,29 @@
 			</div>
 		</header>
 		
-	
-	<div class="container">
-		<h1 class="text-center">La liste complète des salles<h1>
-		<div>
-			<div class="row mb-2">
-				<a  href="/salle/create" class="btn btn-primary col">
-					Ajouter une nouvelle salle
-				</a>
-			</div>
-			<div class="row">
-				<form class="col d-flex" method="post" action="${pageContext.request.contextPath}salles/search">
-					<input type="text" class="form-control d-inline me-2" name="nom" />
-					<button type="submit"  class="d-inline">Rechercher</button>
-				</form>
-			</div>
-			<div class="row">
-				<table class="table table-striped">
-				  <thead>
-				    <tr>
-				      <th scope="col">#</th>
-				      <th scope="col">Nom</th>
-				      <th scope="col">Capacité</th>
-				      <th scope="col">Localisation</th>
-					  <th scope="col">Disponible</th>
-					  <th scope="col" class="text-primary">Editer</th>
-					  <th scope="col" class="text-danger">Supprimer</th>
-				    </tr>
-				  </thead>
-				  <tbody>
-					
-					<c:forEach var="salle" items="${salles}">
-						<tr>
-					      <th scope="row">${salle.id}</th>
-					      <td>${salle.nom}</td>
-					      <td>${salle.capacite}</td>
-						  <td>${salle.localisation}</td>
-						  <td>${salle.disponible}</td>
-	  				      <td><a title="Editer la salle  ${salle.nom}" href="salle/${salle.id}">Editer</a></td>
-	  				      <td><a title="Supprimer la salle  ${salle.id}" class="text-danger" href="salle/delete/${salle.id}">Supprimer</a></td>
-					    </tr>					  
-															
-					</c:forEach>
-				    
-				  </tbody>
-				</table>
-			</div>
+		<div class="container">
+			<h1> ${pageTitle}</h1>
+			<form method="post">
+			  <div class="mb-3">
+			    <label for="exampleInputEmail1" class="form-label">Nom</label>
+			    <input type="text" class="form-control" value="${utilisateur.nom}" name="nom">
+			  </div>
+			  <div class="mb-3">
+  			    <label for="exampleInputEmail1" class="form-label">Email</label>
+  			    <input type="email" class="form-control" value="${utilisateur.email}" name="email">
+  			  </div>
+			  <div class="mb-3">
+			    <label for="exampleInputEmail1" class="form-label">Role</label>
+			    <input type="text" class="form-control" value="${utilisateur.role}" name="role">
+			  </div>
+			  
+			  
+			  <button type="submit" class="btn btn-primary">Soumettre</button>
+			</form>
 		</div>
-	</div>
-	
-	
-	<footer class="py-3 my-4 bg-success" style="--bs-bg-opacity: .25;">
+		
+		
+	  <footer class="py-3 my-4 bg-success" style="--bs-bg-opacity: .25;">
         <ul class="nav justify-content-center border-bottom pb-3 mb-3">
           <li class="nav-item">
             <a href="#" class="nav-link px-2 text-body-secondary">Home</a>
@@ -188,3 +160,5 @@
 </body>
 
 </html>
+
+		

@@ -22,4 +22,16 @@ public class SalleService {
 	public Optional<Salle> getSalleById(Long id) {
 		return salleRepo.findById(id);
 	}
+	
+	public Salle saveSalle(Salle salle) {
+		return salleRepo.save(salle);
+	}
+	
+	public List<Salle> findByNom(String nom){
+		return salleRepo.findByNomContainingIgnoreCase(nom);
+	}
+	
+	public void deleteSalle(Salle salle) {
+		salleRepo.delete(salle);
+	}
 }

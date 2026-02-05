@@ -116,12 +116,12 @@
 		<h1 class="text-center">La liste complète des salles<h1>
 		<div>
 			<div class="row mb-2">
-				<a  href="/salle/create" class="btn btn-primary col">
-					Ajouter une nouvelle salle
+				<a  href="/utilisateur/create" class="btn btn-primary col">
+					Ajouter un nouveau utilisateur
 				</a>
 			</div>
 			<div class="row">
-				<form class="col d-flex" method="post" action="${pageContext.request.contextPath}salles/search">
+				<form class="col d-flex" method="post" action="${pageContext.request.contextPath}utilisateurs/search">
 					<input type="text" class="form-control d-inline me-2" name="nom" />
 					<button type="submit"  class="d-inline">Rechercher</button>
 				</form>
@@ -132,24 +132,22 @@
 				    <tr>
 				      <th scope="col">#</th>
 				      <th scope="col">Nom</th>
-				      <th scope="col">Capacité</th>
-				      <th scope="col">Localisation</th>
-					  <th scope="col">Disponible</th>
+				      <th scope="col">email</th>
+				      <th scope="col">Rôle</th>
 					  <th scope="col" class="text-primary">Editer</th>
 					  <th scope="col" class="text-danger">Supprimer</th>
 				    </tr>
 				  </thead>
 				  <tbody>
 					
-					<c:forEach var="salle" items="${salles}">
+					<c:forEach var="utilisateur" items="${utilisateurs}">
 						<tr>
-					      <th scope="row">${salle.id}</th>
-					      <td>${salle.nom}</td>
-					      <td>${salle.capacite}</td>
-						  <td>${salle.localisation}</td>
-						  <td>${salle.disponible}</td>
-	  				      <td><a title="Editer la salle  ${salle.nom}" href="salle/${salle.id}">Editer</a></td>
-	  				      <td><a title="Supprimer la salle  ${salle.id}" class="text-danger" href="salle/delete/${salle.id}">Supprimer</a></td>
+					      <th scope="row">${utilisateur.id}</th>
+					      <td>${utilisateur.nom}</td>
+					      <td>${utilisateur.email}</td>
+						  <td>${utilisateur.role}</td>
+	  				      <td><a title="Editer l'utilisateur  ${utilsateur.nom}" href="utilisateur/${utilisateur.id}">Editer</a></td>
+	  				      <td><a title="Supprimer l'utilisateur  ${utilsateur.id}" class="text-danger" href="utilisateur/delete/${utilisateur.id}">Supprimer</a></td>
 					    </tr>					  
 															
 					</c:forEach>

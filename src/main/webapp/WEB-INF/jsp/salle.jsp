@@ -112,8 +112,8 @@
 		</header>
 		
 		<div class="container">
-			<h1> Modifier les données da salle:</h1>
-			<form>
+			<h1> ${pageTitle}</h1>
+			<form method="post">
 			  <div class="mb-3">
 			    <label for="exampleInputEmail1" class="form-label">Nom</label>
 			    <input type="text" class="form-control" value="${salle.nom}" name="nom">
@@ -127,7 +127,8 @@
 			    <input type="text" class="form-control" value="${salle.localisation}" name="localisation">
 			  </div>
 			  <div class="mb-3 form-check">
-			      <input type="checkbox" class="form-check-input" name="disponible" id="exampleCheck1">
+			      <input type="checkbox" class="form-check-input" name="disponible" value="true">
+				  <input type="hidden" value="false" class="form-check-input" name="disponible" >
 			      <label class="form-check-label" for="exampleCheck1">Disponible</label>
 			  </div>
 			  
