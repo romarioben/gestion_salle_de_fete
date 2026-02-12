@@ -27,9 +27,11 @@
 
 <head>
 	<meta charset="utf-8" />
-	<title>Accueil</title>
+	<title>Salles</title>
 	<meta name="generator" content="Geany 2.0" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+	<link href="https://cdn.datatables.net/2.3.7/css/dataTables.dataTables.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -111,8 +113,8 @@
 			</div>
 		</header>
 		
-	
-	<div class="container">
+
+	<main class="container">
 		<h1 class="text-center">La liste complète des salles<h1>
 		<div>
 			<div class="row mb-2">
@@ -120,14 +122,8 @@
 					Ajouter une nouvelle salle
 				</a>
 			</div>
-			<div class="row">
-				<form class="col d-flex" method="post" action="${pageContext.request.contextPath}salles/search">
-					<input type="text" class="form-control d-inline me-2" name="nom" />
-					<button type="submit"  class="d-inline">Rechercher</button>
-				</form>
-			</div>
-			<div class="row">
-				<table class="table table-striped">
+			<div class="row mb-2">
+				<table id="salles" class="table table-striped">
 				  <thead>
 				    <tr>
 				      <th scope="col">#</th>
@@ -141,15 +137,22 @@
 				  </thead>
 				  <tbody>
 					
-					<c:forEach var="salle" items="${salles}">
+					<c:forEach var="salle" items="${salles}" varStatus="status">
 						<tr>
-					      <th scope="row">${salle.id}</th>
+					      <th scope="row">${status.count}</th>
 					      <td>${salle.nom}</td>
 					      <td>${salle.capacite}</td>
 						  <td>${salle.localisation}</td>
-						  <td>${salle.disponible}</td>
-	  				      <td><a title="Editer la salle  ${salle.nom}" href="salle/${salle.id}">Editer</a></td>
-	  				      <td><a title="Supprimer la salle  ${salle.id}" class="text-danger" href="salle/delete/${salle.id}">Supprimer</a></td>
+						  <td>
+							<c:if  test="${salle.disponible == true}">
+								OUI
+							</c:if>
+							<c:if  test="${salle.disponible == false}">
+								NON
+							</c:if>
+						  </td>
+	  				      <td><a title="Editer la salle  ${salle.nom}" href="/salle/${salle.id}">Editer</a></td>
+	  				      <td><a title="Supprimer la salle  ${salle.nom}" class="text-danger" href="/salle/delete/${salle.id}">Supprimer</a></td>
 					    </tr>					  
 															
 					</c:forEach>
@@ -158,25 +161,22 @@
 				</table>
 			</div>
 		</div>
-	</div>
+	</main>
 	
 	
 	<footer class="py-3 my-4 bg-success" style="--bs-bg-opacity: .25;">
         <ul class="nav justify-content-center border-bottom pb-3 mb-3">
           <li class="nav-item">
-            <a href="#" class="nav-link px-2 text-body-secondary">Home</a>
+            <a href="/" class="nav-link px-2 text-body-secondary">Accueil</a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link px-2 text-body-secondary">Features</a>
+            <a href="/salles" class="nav-link px-2 text-body-secondary">Salles</a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link px-2 text-body-secondary">Pricing</a>
+            <a href="/utilisateurs" class="nav-link px-2 text-body-secondary">Utilisateurs</a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link px-2 text-body-secondary">FAQs</a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link px-2 text-body-secondary">About</a>
+            <a href="/reservations" class="nav-link px-2 text-body-secondary">Réservations</a>
           </li>
         </ul>
         <p class="text-center text-body-secondary">&copy; 2025 Company, Inc</p>
@@ -184,7 +184,11 @@
 
 		  
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-		  
+	<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+	<script src="https://cdn.datatables.net/2.3.7/js/dataTables.min.js" ></script>  
+	<script>
+		let table = new DataTable('#salles');
+	</script>
 </body>
 
 </html>

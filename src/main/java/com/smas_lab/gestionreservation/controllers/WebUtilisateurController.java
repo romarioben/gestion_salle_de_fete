@@ -96,7 +96,7 @@ public class WebUtilisateurController {
 	}
 	
 	@PostMapping("utilisateurs/search")
-	public String searchUtilisateurByNomOrEmail(ModelMap modelMap,@RequestParam String nom) {
+	public String searchUtilisateurByNomOrEmail(ModelMap modelMap,@RequestParam("nom") String nom) {
 		List<Utilisateur> utilisateurs = utilisateurService.findByNom(nom, nom);
 		modelMap.addAttribute("utilisateurs", utilisateurs);
 		return "utilisateurs";

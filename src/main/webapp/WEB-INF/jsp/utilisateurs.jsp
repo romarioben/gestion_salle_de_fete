@@ -29,7 +29,9 @@
 	<meta charset="utf-8" />
 	<title>Accueil</title>
 	<meta name="generator" content="Geany 2.0" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+	<link href="https://cdn.datatables.net/2.3.7/css/dataTables.dataTables.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -100,11 +102,6 @@
 		            />
 		          </a>
 		          <ul class="dropdown-menu text-small">
-		            <li><a class="dropdown-item" href="#">New project...</a></li>
-		            <li><a class="dropdown-item" href="#">Settings</a></li>
-		            <li><a class="dropdown-item" href="#">Profile</a></li>
-		            <li><hr class="dropdown-divider" /></li>
-		            <li><a class="dropdown-item" href="#">Sign out</a></li>
 		          </ul>
 		        </div>
 		      </div>
@@ -113,7 +110,7 @@
 		
 	
 	<div class="container">
-		<h1 class="text-center">La liste complète des salles<h1>
+		<h1 class="text-center">La liste des utilisateurs<h1>
 		<div>
 			<div class="row mb-2">
 				<a  href="/utilisateur/create" class="btn btn-primary col">
@@ -121,13 +118,7 @@
 				</a>
 			</div>
 			<div class="row">
-				<form class="col d-flex" method="post" action="${pageContext.request.contextPath}utilisateurs/search">
-					<input type="text" class="form-control d-inline me-2" name="nom" />
-					<button type="submit"  class="d-inline">Rechercher</button>
-				</form>
-			</div>
-			<div class="row">
-				<table class="table table-striped">
+				<table id="utilisateurs" class="table table-striped">
 				  <thead>
 				    <tr>
 				      <th scope="col">#</th>
@@ -140,9 +131,9 @@
 				  </thead>
 				  <tbody>
 					
-					<c:forEach var="utilisateur" items="${utilisateurs}">
+					<c:forEach var="utilisateur" items="${utilisateurs}" varStatus="status">
 						<tr>
-					      <th scope="row">${utilisateur.id}</th>
+					      <th scope="row">${status.count}</th>
 					      <td>${utilisateur.nom}</td>
 					      <td>${utilisateur.email}</td>
 						  <td>${utilisateur.role}</td>
@@ -160,29 +151,30 @@
 	
 	
 	<footer class="py-3 my-4 bg-success" style="--bs-bg-opacity: .25;">
-        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-          <li class="nav-item">
-            <a href="#" class="nav-link px-2 text-body-secondary">Home</a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link px-2 text-body-secondary">Features</a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link px-2 text-body-secondary">Pricing</a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link px-2 text-body-secondary">FAQs</a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link px-2 text-body-secondary">About</a>
-          </li>
-        </ul>
-        <p class="text-center text-body-secondary">&copy; 2025 Company, Inc</p>
-      </footer>
+	        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+	          <li class="nav-item">
+	            <a href="/" class="nav-link px-2 text-body-secondary">Accueil</a>
+	          </li>
+	          <li class="nav-item">
+	            <a href="/salles" class="nav-link px-2 text-body-secondary">Salles</a>
+	          </li>
+	          <li class="nav-item">
+	            <a href="/utilisateurs" class="nav-link px-2 text-body-secondary">Utilisateurs</a>
+	          </li>
+	          <li class="nav-item">
+	            <a href="/reservations" class="nav-link px-2 text-body-secondary">Réservations</a>
+	          </li>
+	        </ul>
+	        <p class="text-center text-body-secondary">&copy; 2025 Company, Inc</p>
+	      </footer>
 
-		  
+	<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>  
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-		  
+	<script src="https://cdn.datatables.net/2.3.7/js/dataTables.min.js" ></script>  
+	<script>
+		let table = new DataTable('#utilisateurs');
+	</script>
+	
 </body>
 
 </html>

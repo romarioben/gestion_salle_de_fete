@@ -31,6 +31,7 @@
 	<meta name="generator" content="Geany 2.0" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+	<link href="htttps://cdn.datatables.net/2.3.7/css/dataTables.dataTables.min.css rel="stylesheet">
 </head>
 
 <body>
@@ -101,11 +102,7 @@
 		            />
 		          </a>
 		          <ul class="dropdown-menu text-small">
-		            <li><a class="dropdown-item" href="#">New project...</a></li>
-		            <li><a class="dropdown-item" href="#">Settings</a></li>
-		            <li><a class="dropdown-item" href="#">Profile</a></li>
-		            <li><hr class="dropdown-divider" /></li>
-		            <li><a class="dropdown-item" href="#">Sign out</a></li>
+		            
 		          </ul>
 		        </div>
 		      </div>
@@ -116,47 +113,76 @@
 			<h1> ${pageTitle}</h1>
 			<form method="post">
 			  <div class="mb-3">
-			    <label for="exampleInputEmail1" class="form-label">Nom</label>
-			    <input type="text" class="form-control" value="${utilisateur.nom}" name="nom" required>
+			    <label for="" class="form-label">Salle</label>
+				<select name="salle" class="form-select" aria-label="Default select example" required>
+				  <option value="">Choisir la salle</option>
+				  <c:forEach var="salle" items="${salles}">
+					<option 
+						value="${salle.id}" 
+						<c:if test="${salle.id == reservation.salle.id}">selected="selected"</c:if>
+					>${salle.nom}
+					</option>
+				  </c:forEach>
+				</select>
+
 			  </div>
 			  <div class="mb-3">
-  			    <label for="exampleInputEmail1" class="form-label">Email</label>
-  			    <input type="email" class="form-control" value="${utilisateur.email}" name="email" required>
+				<label for="" class="form-label">Utilisateur</label>
+				<select name="utilisateur" value="${reservation.utilisateur.id}" class="form-select" aria-label="Default select example" required>
+				  <option  value="">Choisir l'utilisateur</option>
+				  <c:forEach var="utilisateur" items="${utilisateurs}">
+					<option 
+						value="${utilisateur.id}" 
+						<c:if test="${utilisateur.id == reservation.utilisateur.id}">selected="selected"</c:if>
+					>${utilisateur.nom}
+					</option>
+					  
+				  </c:forEach>
+				</select>
   			  </div>
 			  <div class="mb-3">
-			    <label for="exampleInputEmail1" class="form-label">Role</label>
-			    <input type="text" class="form-control" value="${utilisateur.role}" name="role" required>
+			    <label for="exampleInputEmail1" class="form-label">Date</label>
+			    <input type="date" class="form-control" value="${reservation.dateReservation}" name="dateReservation" required>
 			  </div>
-			  
+			  <div class="mb-3">
+  			    <label for="exampleInputEmail1" class="form-label">Heure de début</label>
+  			    <input type="time" class="form-control" value="${reservation.heureDebut}" name="heureDebut" required>
+  			  </div>
+			  <div class="mb-3">
+			    <label for="exampleInputEmail1" class="form-label">Heure de fin</label>
+			    <input type="time" class="form-control" value="${reservation.heureFin}" name="heureFin" required>
+			  </div>
 			  
 			  <button type="submit" class="btn btn-primary">Soumettre</button>
 			</form>
-		</div>
-		
-		
-		<footer class="py-3 my-4 bg-success" style="--bs-bg-opacity: .25;">
-		        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-		          <li class="nav-item">
-		            <a href="/" class="nav-link px-2 text-body-secondary">Accueil</a>
-		          </li>
-		          <li class="nav-item">
-		            <a href="/salles" class="nav-link px-2 text-body-secondary">Salles</a>
-		          </li>
-		          <li class="nav-item">
-		            <a href="/utilisateurs" class="nav-link px-2 text-body-secondary">Utilisateurs</a>
-		          </li>
-		          <li class="nav-item">
-		            <a href="/reservations" class="nav-link px-2 text-body-secondary">Réservations</a>
-		          </li>
-		        </ul>
-		        <p class="text-center text-body-secondary">&copy; 2025 Company, Inc</p>
-		      </footer>
+	</div>
+	
+	
+	<footer class="py-3 my-4 bg-success" style="--bs-bg-opacity: .25;">
+	        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+	          <li class="nav-item">
+	            <a href="/" class="nav-link px-2 text-body-secondary">Accueil</a>
+	          </li>
+	          <li class="nav-item">
+	            <a href="/salles" class="nav-link px-2 text-body-secondary">Salles</a>
+	          </li>
+	          <li class="nav-item">
+	            <a href="/utilisateurs" class="nav-link px-2 text-body-secondary">Utilisateurs</a>
+	          </li>
+	          <li class="nav-item">
+	            <a href="/reservations" class="nav-link px-2 text-body-secondary">Réservations</a>
+	          </li>
+	        </ul>
+	        <p class="text-center text-body-secondary">&copy; 2025 Company, Inc</p>
+	      </footer>
 
 		  
+	<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-		  
+	<script src="https://cdn.datatables.net/2.3.7/js/dataTables.min.js" ></script>  
+	<script>
+		let table = new DataTable('#salles');
+	</script>
 </body>
 
 </html>
-
-		

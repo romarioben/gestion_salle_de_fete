@@ -29,6 +29,7 @@
 	<meta charset="utf-8" />
 	<title>Accueil</title>
 	<meta name="generator" content="Geany 2.0" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 </head>
 
@@ -163,8 +164,8 @@
 					Les salles de fêtes sont des espaces spécialement conçus pour accueillir des événements sociaux, culturels ou professionnels. Elles servent de cadre à des célébrations telles que les mariages, anniversaires, baptêmes, réunions familiales, cérémonies officielles, conférences, séminaires ou spectacles.
 				</p>
 	            <p>
-	              <a href="#" class="btn btn-primary my-2">Voulez-vous voir toutes nos salles de fêtes?</a>
-	              <a href="#" class="btn btn-secondary my-2">Voulez-vous réserver une salle?</a>
+	              <a href="/salles" class="btn btn-primary my-2">Voulez-vous voir toutes nos salles de fêtes?</a>
+	              <a href="/reservation/create" class="btn btn-secondary my-2">Voulez-vous réserver une salle?</a>
 	            </p>
 	          </div>
 	        </div>
@@ -195,18 +196,18 @@
 		                    class="d-flex justify-content-between align-items-center"
 		                  >
 		                    <div class="btn-group">
-		                      <button
+		                      <a href="/salle/${salle.id}"
 		                        type="button"
 		                        class="btn btn-sm btn-outline-secondary"
 		                      >
 		                        View
-		                      </button>
-		                      <button
+		                      </a>
+		                      <a href="/reservation/create"
 		                        type="button"
 		                        class="btn btn-sm btn-outline-secondary"
 		                      >
 		                        Réserver
-		                      </button>
+		                      </a>
 		                    </div>
 		                    <small class="text-body-secondary">9 mins</small>
 		                  </div>
@@ -226,25 +227,22 @@
 	
 	
 	<footer class="py-3 my-4 bg-success" style="--bs-bg-opacity: .25;">
-	        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-	          <li class="nav-item">
-	            <a href="#" class="nav-link px-2 text-body-secondary">Home</a>
-	          </li>
-	          <li class="nav-item">
-	            <a href="#" class="nav-link px-2 text-body-secondary">Features</a>
-	          </li>
-	          <li class="nav-item">
-	            <a href="#" class="nav-link px-2 text-body-secondary">Pricing</a>
-	          </li>
-	          <li class="nav-item">
-	            <a href="#" class="nav-link px-2 text-body-secondary">FAQs</a>
-	          </li>
-	          <li class="nav-item">
-	            <a href="#" class="nav-link px-2 text-body-secondary">About</a>
-	          </li>
-	        </ul>
-	        <p class="text-center text-body-secondary">&copy; 2025 Company, Inc</p>
-	      </footer>
+        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+          <li class="nav-item">
+            <a href="/" class="nav-link px-2 text-body-secondary">Accueil</a>
+          </li>
+          <li class="nav-item">
+            <a href="/salles" class="nav-link px-2 text-body-secondary">Salles</a>
+          </li>
+          <li class="nav-item">
+            <a href="/utilisateurs" class="nav-link px-2 text-body-secondary">Utilisateurs</a>
+          </li>
+          <li class="nav-item">
+            <a href="/reservations" class="nav-link px-2 text-body-secondary">Réservations</a>
+          </li>
+        </ul>
+        <p class="text-center text-body-secondary">&copy; 2025 Company, Inc</p>
+      </footer>
 
 	  
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
